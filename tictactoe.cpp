@@ -6,6 +6,7 @@ using namespace std;
 typedef vector<vector<char> > State;
 const int SIZE = 3;
 
+// in ra ban co 
 void renderGame(State state)
 {
     cout << " -------------" << endl;
@@ -17,6 +18,7 @@ void renderGame(State state)
     }
 }
 
+// Nguoi choi luot tiep theo
 char getNextPlayer(State s)
 {
     int countX = 0, countO = 0;
@@ -30,6 +32,7 @@ char getNextPlayer(State s)
     else return 'O';
 }
 
+// Cap nhat trang thai ban co
 State play(State s, int i, int j, char player)
 {
     State newState = State(3, vector<char>(3, ' '));
@@ -57,6 +60,7 @@ vector<State> getNextStates(State s)
     return states;
 }
 
+//Kiem tra tro choi da ket thuc chua
 bool isFinalState(State s)
 {
     // check rows
@@ -77,13 +81,14 @@ bool isFinalState(State s)
     return true;
 }
 
+//Tinh diem trang thai cuoi cung
 int getScoreFinalState(State s)
 {
-    // check rows
+    // kiem tra hang
     for (int i = 0; i < SIZE; i++)
         if (s[i][0] == s[i][1] && s[i][0] == s[i][2] && s[i][0] != ' ') 
             return s[i][0] == 'X' ? 1 : -1;
-    // check cols
+    // kiem tra cot
     for (int i = 0; i < SIZE; i++)
         if (s[0][i] == s[1][i] && s[0][i] == s[2][i] && s[0][i] != ' ')
             return s[0][i] == 'X' ? 1 : -1;
@@ -121,6 +126,7 @@ pair<int, State> getScore(State s)
     return make_pair(bestScore, bestState);
 }
 
+// Nuoc di tot nhat
 pair<int, int> getComputerPlay(State s)
 {
     pair<int, State> p = getScore(s);
